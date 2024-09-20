@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import logo from "../assets/logo.jpg"
 
 // Simulated wallet address mapping
 const walletAddressMapping = {
@@ -103,17 +104,21 @@ export default function Box() {
 
     return (
         <>
-            <header style={{backgroundColor: '#144c7c'}}className="bg-black-200 p-4 text-center mt-10 relative z-10">
-                <img src={logo}></img>
+            <header style={{backgroundColor: '#144c7c'}} className="bg-black-200 p-4 text-center mt-10 relative z-10">
+            {/* <img
+                src={logo}
+                alt="Logo"
+                style={{ height: '6rem', width: '6rem', objectFit: 'contain' }} // Adjust the size here
+            /> */}
                 <h1 className="text-6xl p-5 mb-8 londrina-solid-regular text-black break-words">
                     WORD NAME SYSTEM
                 </h1>
             </header>
-            <div className="flex bg-white p-8 rounded-lg shadow-lg max-w-xl mx-auto mt-10 inline-block">
+            {/* <div className="flex bg-white p-8 rounded-lg shadow-lg max-w-xl mx-auto mt-10 inline-block">
                 <h1 className="text-6xl p-5 mb-8 londrina-solid-regular text-black break-words">
                     WORD NAME SYSTEM
                 </h1>
-            </div>
+            </div> */}
 
             {/* Menu Bar and Form Box */}
             <div className="bg-white p-8 rounded-lg shadow-lg max-w-xl mx-auto mt-10 inline-block">
