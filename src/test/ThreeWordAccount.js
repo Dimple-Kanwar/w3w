@@ -1,6 +1,5 @@
-import { expect } from "chai";
-import hre from "hardhat";
-import { ThreeWordAccount } from "../typechain-types";
+const { expect } = require("chai");
+const hre = require("hardhat");
 
 describe("ThreeWordAccount", function () {
   let threeWordAccount;
@@ -31,7 +30,7 @@ describe("ThreeWordAccount", function () {
       const word3 = "fruit";
       await expect(threeWordAccount.connect(user1).setAccountName(word1, word2, word3, await user1.getAddress()))
         .to.emit(threeWordAccount, "accountNameSet")
-        .withArgs(await user1.getAddress(), `${word1}.${word2}.${word3}`);
+        .withArgs(await user1.getAddress(), `///${word1}.${word2}.${word3}`);
     });
 
     it("Should get the account name", async function () {
@@ -40,7 +39,7 @@ describe("ThreeWordAccount", function () {
       const word3 = "fruit";
       const accountName = await threeWordAccount.getAccountName(await user1.getAddress());
       // console.log({accountName});
-      expect(accountName).to.be.eq(`${word1}.${word2}.${word3}`)
+      expect(accountName).to.be.eq(`///${word1}.${word2}.${word3}`)
     });
 
     it("Should get the account address by account name", async function () {
@@ -48,7 +47,7 @@ describe("ThreeWordAccount", function () {
       const word2 = "green";
       const word3 = "fruit";
       // console.log({accountName: `${word1}.${word2}.${word3}`});
-      const accountAddress = await threeWordAccount.getAddressByAccountName(`${word1}.${word2}.${word3}`);
+      const accountAddress = await threeWordAccount.getAddressByAccountName(`///${word1}.${word2}.${word3}`);
       // console.log({accountAddress});
       expect(accountAddress).to.be.eq(await user1.getAddress())
     });
@@ -57,7 +56,7 @@ describe("ThreeWordAccount", function () {
       const word1 = "apple";
       const word2 = "green";
       const word3 = "fruit";
-      await expect(threeWordAccount.getAddressByAccountName(`${word1}-${word2}-${word3}`)).to.be.revertedWith('Invalid account name format');
+      await expect(threeWordAccount.getAddressByAccountName(`///${word1}-${word2}-${word3}`)).to.be.revertedWith('Invalid account name format');
     });
 
     it("Should set the account name if mapping does not exist", async function () {
@@ -69,7 +68,7 @@ describe("ThreeWordAccount", function () {
       expect(accountName).to.be.empty;
       await expect(threeWordAccount.connect(user3).setAccountName(word1, word2, word3, await user2.getAddress()))
         .to.emit(threeWordAccount, "accountNameSet")
-        .withArgs(await user2.getAddress(), `${word1}.${word2}.${word3}`);
+        .withArgs(await user2.getAddress(), `///${word1}.${word2}.${word3}`);
     });
 
     it("Should set the account address if account name does not exist", async function () {
@@ -81,7 +80,7 @@ describe("ThreeWordAccount", function () {
       expect(accountAddress).to.be.eq('0x0000000000000000000000000000000000000000');
       await expect(threeWordAccount.connect(user3).setAccountName(word1, word2, word3,await user3.getAddress()))
         .to.emit(threeWordAccount, "accountNameSet")
-        .withArgs(await user3.getAddress(), `${word1}.${word2}.${word3}`);
+        .withArgs(await user3.getAddress(), `///${word1}.${word2}.${word3}`);
     });
   });
 });

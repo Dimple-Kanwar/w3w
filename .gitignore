@@ -25,3 +25,7 @@ dist-ssr
 
 # environment variables
 .env
+
+# smart-contract artifacts and cache files
+artifacts
+cache

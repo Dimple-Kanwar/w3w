@@ -1,7 +1,7 @@
-import "@nomicfoundation/hardhat-toolbox";
-import "dotenv/config";
+require("@nomicfoundation/hardhat-toolbox");
+require("dotenv/config");
 
-const config = {
+module.exports = {
   solidity: {
     version: "0.8.24",
     settings: {
@@ -13,7 +13,7 @@ const config = {
   },
   paths: {
     sources: "./src/contracts",
-    tests: "./test",
+    tests: "./src/test",
     cache: "./cache",
     artifacts: "./artifacts",
   },
@@ -48,5 +48,3 @@ const config = {
     }
   
 };
-
-export default config;
