@@ -1,0 +1,37 @@
+[
+  {
+    "chainId": 296,
+    "name": "Hedera Testnet",
+    "rpcUrl": "https://testnet.hashio.io/api"
+  },
+  {
+    "chainId": 398,
+    "name": "Near Testnet",
+    "rpcUrl": "https://rpc.testnet.near.org"
+  },
+  {
+    "chainId": 80084,
+    "name": "Berachain bArtio",
+    "rpcUrl": "https://bartio.rpc.berachain.com"
+  },
+  {
+    "chainId": 31,
+    "name": "Rootstock Testnet",
+    "rpcUrl": "https://rpc.testnet.rootstock.io/ONuqyqARiafWi1R18x0p3eu4C1PoQg-T"
+  },
+  {
+    "chainId": 10200,
+    "name": "Gnosis Chiado Testnet",
+    "rpcUrl": "https://1rpc.io/gnosis"
+  },
+  {
+    "chainId": 59141,
+    "name": "Linea Sepolia",
+    "rpcUrl": "https://linea-sepolia.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161"
+  },
+  {
+    "chainId": 545,
+    "name": "EVM on Flow Testnet",
+    "rpcUrl": "https://testnet.evm.nodes.onflow.org"
+  }
+]

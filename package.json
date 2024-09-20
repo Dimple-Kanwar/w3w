@@ -2,7 +2,6 @@
   "name": "wns-project",
   "private": true,
   "version": "0.0.0",
-  "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -21,7 +20,9 @@
     "react-redux": "^9.1.2",
     "react-router-dom": "^6.26.2",
     "viem": "^2.21.7",
-    "wagmi": "^2.12.11"
+    "wagmi": "^2.12.11",
+    "dotenv": "^16.4.5",
+    "random-words": "^2.0.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.9.0",
@@ -36,6 +37,8 @@
     "globals": "^15.9.0",
     "postcss": "^8.4.47",
     "tailwindcss": "^3.4.11",
-    "vite": "^5.4.1"
+    "vite": "^5.4.1",
+    "@nomicfoundation/hardhat-toolbox": "^5.0.0",
+    "hardhat": "^2.22.10"
   }
 }
