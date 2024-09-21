@@ -1,4 +1,4 @@
-const seedrandom  = require("seedrandom");
+import seedrandom from "seedrandom";
 
 // Export the word list as it is often useful
 const wordList = [
@@ -1964,7 +1964,7 @@ const longestWordSize = wordList.reduce((longestWord, currentWord) =>
   currentWord.length > longestWord.length ? currentWord : longestWord
 ).length;
 
- function generate(options) {
+export function generate(options) {
   // initalize random number generator for words if options.seed is provided
   const random = options?.seed ? new seedrandom(options.seed) : null;
 
@@ -2082,9 +2082,3 @@ const longestWordSize = wordList.reduce((longestWord, currentWord) =>
     (word) => word.length >= minLength && word.length <= maxLength
   ).length;
 }
-
-
-module.exports = {
-  generate: generate,
-  count: count,
-};

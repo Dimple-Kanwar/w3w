@@ -1,23 +1,24 @@
-const {ethers} = require("hardhat");
-const { generate } = require("../utils/random-words");
-const abi = require("../utils/contract-abi.json")
-require("dotenv/config");
-import networks from "../constants.json";
-
+import {ethers} from "ethers";
+import { generate } from "../utils/random-words";
+import abi from "../utils/contract-abi.json";
+import("dotenv/config");
 // ABI of the ThreeWordAccount contract
 
 const ZERO_ADDRESS = "0x0000000000000000000000000000000000000000";
 const wordCount = 3;
-export class ThreeWordAccountService {
+export default class ThreeWordAccountService {
 
   constructor(networks) {
     this.networks = networks;
     this.contracts = new Map();
     this.signers = new Map();
-    console.log("network--------------------------->", networks);
+    // console.log("network--------------------------->", networks);
     networks.forEach(async network => {
       const provider = new ethers.JsonRpcProvider(network.rpcUrl);
+      // console.log("provider--------------------------->", provider);
+      // console.log("network.privateKey--------------------------->", network.privateKey);
       const signer = new ethers.Wallet(network.privateKey, provider);
+      // console.log("signer--------------------------->", signer);
       this.signers.set(network.chainId, signer);
       const Contract_ABI = abi;
       this.contracts.set(network.chainId, new ethers.Contract(network.contractAddress, Contract_ABI, signer));
@@ -55,10 +56,7 @@ export class ThreeWordAccountService {
 
   async getAccountNameByAddress(chainId, account) {
     const contract = await this.getContract(chainId);
-    console.log({contract});
-    console.log({account});
     const accountName = await contract.getAccountName(account);
-    console.log({accountName});
     if (!accountName) {
       await this.mapAccount(chainId, account);
     }

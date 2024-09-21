@@ -1,22 +1,6 @@
 import React, { useState } from 'react';
-import logo from "../assets/logo.jpg"
 
-// Simulated wallet address to account name mapping
-const addressToNameMapping = {
-    '0xABC1234567890abcdef1234567890ABCDEF1234': { accountName: '///a.b.c', status: 'account' },
-    '0xDEF1234567890abcdef1234567890ABCDEF5678': { accountName: '///another.name.here', status: 'contract' },
-    '0xGHI1234567890abcdef1234567890ABCDEF9012': { accountName: '///example.wallet.name', status: 'scam' },
-};
-
-const statusColors = {
-    account: 'bg-green-500',
-    contract: 'bg-yellow-500',
-    scam: 'bg-red-500',
-    notFound: 'bg-gray-500'
-};
-
-// CheckForm Component
-export const SwapForm = ({ accountName, setAccountName, walletAddress, setWalletAddress, walletStatus, setWalletStatus }) => {
+export const SwapForm = () => {
     
     const [walletAddress, setWalletAddress] = useState('');
     const [walletStatus, setWalletStatus] = useState('');

@@ -1,45 +1,75 @@
-import React, { useState } from 'react';
-import logo from "../assets/logo.jpg"
-import { ThreeWordAccountService } from "../services/ThreeWordAccountService";
-
-// Simulated wallet address to account name mapping
-// const addressToNameMapping = {
-//     '0xABC1234567890abcdef1234567890ABCDEF1234': { accountName: '///a.b.c', status: 'account' },
-//     '0xDEF1234567890abcdef1234567890ABCDEF5678': { accountName: '///another.name.here', status: 'contract' },
-//     '0xGHI1234567890abcdef1234567890ABCDEF9012': { accountName: '///example.wallet.name', status: 'scam' },
-// };
+import React, { useState, useEffect } from 'react';
+import { useAccount, useChainId } from 'wagmi';
+import ThreeWordAccountService from "../services/ThreeWordAccountService";
+import networks from "../constants";
+import { ethers } from 'ethers';
+import { checkAddressType } from '../utils/checkAddress';
+const threeWordAccountService = new ThreeWordAccountService(networks);
+let provider;
 
 const statusColors = {
     account: 'bg-green-500',
     contract: 'bg-yellow-500',
     scam: 'bg-red-500',
-    notFound: 'bg-gray-500'
+    notFound: 'bg-gray-500',
+    invalidAddress: 'bg-gray-500'
 };
 
 // CheckForm Component
-export default  function CheckForm({ accountName, setAccountName, walletAddress, setWalletAddress, walletStatus, setWalletStatus }){
-    
-    // const [walletAddress, setWalletAddress] = useState('');
-    // const [walletStatus, setWalletStatus] = useState('');
-    // const [accountName, setAccountName] = useState('');
-    const [activeNav, setActiveNav] = useState('Check'); // Track active menu item
-    const handleInputChange = (e) => {
-        const input = e.target.value;
-        setWalletAddress(input);
+export default function CheckForm() {
+    const { isConnected, address } = useAccount();
+    const [walletAddress, setWalletAddress] = useState('');
+    const [walletStatus, setWalletStatus] = useState('');
+    const [accountName, setAccountName] = useState('');
 
-        // Fetch wallet address based on the account name
-        if (addressToNameMapping[input]) {
-
-            const { accountName, status } = addressToNameMapping[input];
-            setAccountName(accountName);
-
-            setWalletStatus(status);
-        } else {
-            const threeWordAccountService = new ThreeWordAccountService(networks);
-            const newAccountName = '///gift.try.help';
-            setAccountName(newAccountName);
-            setWalletStatus('account'); // set by voting for scam based on thumps up, it is valid account or if there are more -ve or thumps down, then it's a scam
+    const chainId = useChainId();
+    useEffect(() => {
+        if (ethers.BrowserProvider) {
+            provider = new ethers.BrowserProvider(window.ethereum)
         }
+        const setAccountMapping = async () => {
+            try {
+                const accountName = await threeWordAccountService.getAccountNameByAddress(chainId, address);
+                // console.log({ accountName })
+                if (!accountName) {
+                    const mapAccountResponse = await threeWordAccountService.mapAccount(chainId, address);
+                    console.log('Account mapped response:', mapAccountResponse);
+                }
+            } catch (error) {
+                console.error('Error mapping account:', error);
+            }
+        };
+
+        if (isConnected) {
+            setAccountMapping();
+        }
+    }, [isConnected]);
+
+    const handleInputChange = async (e) => {
+        const input = e.target.value;
+        if (input) {
+            setWalletAddress(input);
+            // console.log({ input });
+            const accountType = await checkAddressType(input, provider);
+            console.log({ accountType });
+            setWalletStatus(accountType);
+            if (accountType != "Invalid Address!") {
+                // Fetch account name by the address
+                const accountName = await threeWordAccountService.getAccountNameByAddress(chainId, input);
+                console.log({ accountName });
+                if (accountName) {
+                    setAccountName(accountName);
+                } else {
+                    const mapAccountResponse = await threeWordAccountService.mapAccount(chainId, input);
+                    console.log('Account mapped response:', mapAccountResponse);
+                    const newAccountName = await threeWordAccountService.getAccountNameByAddress(chainId, input);
+                    // console.log({ newAccountName });
+                    setAccountName(newAccountName);
+                }
+            }else{
+                setAccountName(accountType);
+            }
+        }else{}
     };
 
     return (

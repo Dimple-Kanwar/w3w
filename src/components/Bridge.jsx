@@ -71,7 +71,7 @@ const SwapForm = () => {
 
 // BridgeForm Component (Placeholder for other forms)
 const BridgeForm = () => {
-    return <div><h2>Bridge Form</h2><p>This is the Bridge form.</p></div>;
+    return <div><h2>Donate Form</h2><p>This is the Donate form.</p></div>;
 };
 
 export default function Box() {

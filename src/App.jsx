@@ -1,13 +1,14 @@
 import { createWeb3Modal } from '@web3modal/wagmi/react'
 import { defaultWagmiConfig } from '@web3modal/wagmi/react/config'
 import { WagmiProvider } from 'wagmi'
-import { arbitrum, mainnet, hedera, hederaTestnet, polygon, polygonAmoy, rootstock, rootstockTestnet } from 'wagmi/chains'
+import { hederaTestnet, rootstockTestnet, lineaSepolia, auroraTestnet, morphHolesky, flowTestnet } from 'wagmi/chains'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { Provider as ReduxProvider } from 'react-redux'
 import { store } from './store'
 import bgImage from "./assets/bg.png";
 import Box from "./components/Box";
 import ConnectButton from "./components/ConnectButton";
+import UserInfoBox from './components/UserInfoBox'
 
 // 1. Get projectId
 const projectId = '2c4250b0ed1c4c85027974613fc83eaf'
@@ -20,7 +21,7 @@ const metadata = {
   icons: ['https://avatars.githubusercontent.com/u/37784886']
 }
 
-const chains = [mainnet, arbitrum, hedera, hederaTestnet, polygon, polygonAmoy, rootstock, rootstockTestnet]
+const chains = [hederaTestnet, rootstockTestnet, lineaSepolia, auroraTestnet, morphHolesky, flowTestnet]
 const config = defaultWagmiConfig({ chains, projectId, metadata })
 
 // 3. Create modal
@@ -35,13 +36,16 @@ function App() {
       <WagmiProvider config={config}>
         <QueryClientProvider client={queryClient}>
           <div className="relative min-h-screen flex flex-col">
-            <img 
-              src={bgImage} 
-              alt="Background" 
+            <img
+              src={bgImage}
+              alt="Background"
               className="absolute inset-0 w-full h-full object-cover"
             />
             <header className="relative z-20 w-full p-4 flex justify-end">
-              <ConnectButton />
+              <div className="absolute top-0 right-0 p-4 z-20 flex flex-col items-end">
+                <ConnectButton />
+                <UserInfoBox />
+              </div>
             </header>
             <main className="flex-grow flex flex-col items-center justify-center px-4 relative z-10">
               <Box />

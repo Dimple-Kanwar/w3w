@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import CheckForm from './CheckForm';
 import logo from '../assets/logo.jpg';
+import { SwapForm } from './SwapForm';
 
 export default function Box() {
     const [activeNav, setActiveNav] = useState('Check');
@@ -10,11 +11,11 @@ export default function Box() {
             case 'Check':
                 return <CheckForm />;
             case 'Registry':
-                return <div>Registry Form</div>;
+                return <RegistryForm />;
             case 'Swap':
-                return <div>Swap Form</div>;
-            case 'Bridge':
-                return <div>Bridge Form</div>;
+                return <SwapForm />;
+            case 'Donate':
+                return <DonateForm />;
             default:
                 return null;
         }
@@ -30,7 +31,7 @@ export default function Box() {
         </div>
         <nav className="mb-2 bg-white rounded-b-lg overflow-hidden">
             <ul className="flex">
-                {['Check', 'Registry', 'Swap', 'Bridge'].map((item) => (
+                {['Check', 'Registry', 'Swap', 'Donate'].map((item) => (
                     <li key={item} className="flex-1">
                         <button 
                             onClick={() => setActiveNav(item)}
