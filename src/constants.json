@@ -10,11 +10,6 @@
     "rpcUrl": "https://rpc.testnet.near.org"
   },
   {
-    "chainId": 80084,
-    "name": "Berachain bArtio",
-    "rpcUrl": "https://bartio.rpc.berachain.com"
-  },
-  {
     "chainId": 31,
     "name": "Rootstock Testnet",
     "rpcUrl": "https://rpc.testnet.rootstock.io/ONuqyqARiafWi1R18x0p3eu4C1PoQg-T"

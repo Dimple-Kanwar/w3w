@@ -1,5 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.24;
+// import "hardhat/console.sol";
+
 contract ThreeWordAccount {
     address public owner;
 
@@ -25,12 +27,14 @@ contract ThreeWordAccount {
 
     function getAccountName(address _address) public view returns (string memory) {
         string memory _accountName = accountName[_address];
+        // console.log("_accountName: ", _accountName);
         // require(bytes(_accountName).length > 0, "Account name not set for this address");
         return (_accountName);
     }
 
     function getAddressByAccountName(string memory _accountName) public view returns (address){
         address _accountAddress = accountAddress[_accountName];
+        // console.log("_accountAddress: ", _accountAddress);
         if (_accountAddress == address(0)) {
             bytes memory accountNameBytes = bytes(_accountName);
             uint256 firstDot = 0;
