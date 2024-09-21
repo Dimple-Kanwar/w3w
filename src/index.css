@@ -26,6 +26,22 @@ body, html {
   font-style: normal;
 }
 
+@keyframes glow {
+  0%, 100% { box-shadow: 0 0 5px #8b5cf6, 0 0 10px #8b5cf6, 0 0 15px #8b5cf6; }
+  50% { box-shadow: 0 0 20px #8b5cf6, 0 0 25px #8b5cf6, 0 0 30px #8b5cf6; }
+}
+
+.snap-button {
+  animation: glow 2s ease-in-out infinite;
+  transition: all 0.3s ease;
+}
+
+.snap-button:hover {
+  transform: scale(1.05);
+  animation: none;
+  box-shadow: 0 0 25px #8b5cf6;
+}
+
 /* :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
