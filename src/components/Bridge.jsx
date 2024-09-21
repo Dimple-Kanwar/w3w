@@ -93,11 +93,11 @@ export default function Box() {
                         setWalletStatus={setWalletStatus}
                     />
                 );
-            case 'Registry':
+            case 'Report Scam':
                 return <RegistryForm />;
             case 'Swap':
                 return <SwapForm />;
-            case 'Bridge':
+            case 'Donate':
                 return <BridgeForm />;
             default:
                 return null;
@@ -125,7 +125,7 @@ export default function Box() {
             {/* Menu Bar and Form Box */}
             <div className="bg-white p-8 rounded-lg shadow-lg max-w-xl mx-auto mt-10 inline-block">
                 <nav className="flex justify-around mb-6">
-                    {['Check', 'Registry', 'Swap', 'Bridge'].map((item) => (
+                    {['Check', 'Report Scam', 'Swap', 'Donate'].map((item) => (
                         <a
                             key={item}
                             href="#"

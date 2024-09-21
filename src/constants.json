@@ -2,31 +2,51 @@
   {
     "chainId": 296,
     "name": "Hedera Testnet",
-    "rpcUrl": "https://testnet.hashio.io/api"
+    "rpcUrl": "https://testnet.hashio.io/api",
+    "accounts": ["${process.env.PRIVATE_KEY}"],
+    "contractAddress": ""
   },
   {
     "chainId": 398,
     "name": "Near Testnet",
-    "rpcUrl": "https://rpc.testnet.near.org"
+    "rpcUrl": "https://rpc.testnet.near.org",
+    "accounts": ["${process.env.PRIVATE_KEY}"],
+    "contractAddress": "0x57131553a355d2E80446f7EEE92333d15188A338"
   },
   {
     "chainId": 31,
     "name": "Rootstock Testnet",
-    "rpcUrl": "https://rpc.testnet.rootstock.io/ONuqyqARiafWi1R18x0p3eu4C1PoQg-T"
-  },
-  {
-    "chainId": 10200,
-    "name": "Gnosis Chiado Testnet",
-    "rpcUrl": "https://1rpc.io/gnosis"
+    "rpcUrl": "https://rpc.testnet.rootstock.io/ONuqyqARiafWi1R18x0p3eu4C1PoQg-T",
+    "accounts": ["${process.env.PRIVATE_KEY}"],
+    "contractAddress": "0xE4981EA428c2FAA950b01C22D87b64fbe60Fa584"
   },
   {
     "chainId": 59141,
     "name": "Linea Sepolia",
-    "rpcUrl": "https://linea-sepolia.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161"
+    "rpcUrl": "https://linea-sepolia.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161",
+    "accounts": ["${process.env.PRIVATE_KEY}"],
+    "contractAddress": "0x77cbfeA07320f53110C3144e1e75Fd610A37F01a"
   },
   {
     "chainId": 545,
     "name": "EVM on Flow Testnet",
-    "rpcUrl": "https://testnet.evm.nodes.onflow.org"
+    "rpcUrl": "https://testnet.evm.nodes.onflow.org",
+    "accounts": ["${process.env.PRIVATE_KEY}"],
+    "contractAddress": "0x77cbfeA07320f53110C3144e1e75Fd610A37F01a",
+    "gas": 500000
+  },
+  {
+    "chainId": null,
+    "name": "Aurora Testnet",
+    "rpcUrl": "${process.env.NEAR_AURORA_TESTNET_RPC}",
+    "accounts": ["${process.env.PRIVATE_KEY}"],
+    "contractAddress": "0x77cbfeA07320f53110C3144e1e75Fd610A37F01a"
+  },
+  {
+    "chainId": 2810,
+    "name": "Morph Holesky Testnet",
+    "rpcUrl": "${process.env.MORPH_RPC_URL}",
+    "accounts": ["${process.env.PRIVATE_KEY}"],
+    "contractAddress": "0x77cbfeA07320f53110C3144e1e75Fd610A37F01a"
   }
 ]

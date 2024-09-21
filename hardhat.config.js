@@ -31,10 +31,6 @@ module.exports = {
         url: `${process.env.NEAR_AURORA_TESTNET_RPC}`,
         accounts: [`${process.env.PRIVATE_KEY}`]
       },
-      develop_aurora: {
-        url: `${process.env.NEAR_AURORA_DEVELOP_RPC}`,
-        accounts: [`${process.env.PRIVATE_KEY}`]
-      },
       hedera: {
         accounts: [`${process.env.HEDERA_ACCOUNT_PRIVATE_KEY}`],
         url: `${process.env.HEDERA_RPC_RELAY_URL}`
@@ -48,10 +44,6 @@ module.exports = {
         accounts: [`${process.env.PRIVATE_KEY}`],
         url: `${process.env.MORPH_RPC_URL}`,
         chainId: 2810
-      },
-      gnosis: {
-        accounts: [`${process.env.PRIVATE_KEY}`],
-        url: `${process.env.GNOSIS_RPC_URL}`
       },
       linea: {
         accounts: [`${process.env.PRIVATE_KEY}`],

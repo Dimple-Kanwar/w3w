@@ -29,3 +29,5 @@ dist-ssr
 # smart-contract artifacts and cache files
 artifacts
 cache
+
+*-notes*

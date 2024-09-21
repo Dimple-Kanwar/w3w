@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import logo from "../assets/logo.jpg"
+import { ThreeWordAccountService } from "../services/ThreeWordAccountService";
 
 // Simulated wallet address to account name mapping
-const addressToNameMapping = {
-    '0xABC1234567890abcdef1234567890ABCDEF1234': { accountName: '///a.b.c', status: 'account' },
-    '0xDEF1234567890abcdef1234567890ABCDEF5678': { accountName: '///another.name.here', status: 'contract' },
-    '0xGHI1234567890abcdef1234567890ABCDEF9012': { accountName: '///example.wallet.name', status: 'scam' },
-};
+// const addressToNameMapping = {
+//     '0xABC1234567890abcdef1234567890ABCDEF1234': { accountName: '///a.b.c', status: 'account' },
+//     '0xDEF1234567890abcdef1234567890ABCDEF5678': { accountName: '///another.name.here', status: 'contract' },
+//     '0xGHI1234567890abcdef1234567890ABCDEF9012': { accountName: '///example.wallet.name', status: 'scam' },
+// };
 
 const statusColors = {
     account: 'bg-green-500',
@@ -16,11 +17,11 @@ const statusColors = {
 };
 
 // CheckForm Component
-const CheckForm = ({ accountName, setAccountName, walletAddress, setWalletAddress, walletStatus, setWalletStatus }) => {
+export default  function CheckForm({ accountName, setAccountName, walletAddress, setWalletAddress, walletStatus, setWalletStatus }){
     
-    const [walletAddress, setWalletAddress] = useState('');
-    const [walletStatus, setWalletStatus] = useState('');
-    const [accountName, setAccountName] = useState('');
+    // const [walletAddress, setWalletAddress] = useState('');
+    // const [walletStatus, setWalletStatus] = useState('');
+    // const [accountName, setAccountName] = useState('');
     const [activeNav, setActiveNav] = useState('Check'); // Track active menu item
     const handleInputChange = (e) => {
         const input = e.target.value;
@@ -34,6 +35,7 @@ const CheckForm = ({ accountName, setAccountName, walletAddress, setWalletAddres
 
             setWalletStatus(status);
         } else {
+            const threeWordAccountService = new ThreeWordAccountService(networks);
             const newAccountName = '///gift.try.help';
             setAccountName(newAccountName);
             setWalletStatus('account'); // set by voting for scam based on thumps up, it is valid account or if there are more -ve or thumps down, then it's a scam
@@ -64,5 +66,3 @@ const CheckForm = ({ accountName, setAccountName, walletAddress, setWalletAddres
         </form>
     );
 };
-
-module.exports = CheckForm
