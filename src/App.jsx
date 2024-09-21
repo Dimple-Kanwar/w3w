@@ -1,3 +1,4 @@
+import React, { useState, useEffect } from 'react'
 import { createWeb3Modal } from '@web3modal/wagmi/react'
 import { defaultWagmiConfig } from '@web3modal/wagmi/react/config'
 import { WagmiProvider } from 'wagmi'
@@ -13,7 +14,12 @@ import UserInfoBox from './components/UserInfoBox'
 // 1. Get projectId
 const projectId = '2c4250b0ed1c4c85027974613fc83eaf'
 
+const snapId = 'local:http://localhost:8080';
+
 // 2. Create wagmiConfig
+
+
+
 const metadata = {
   name: 'dApp',
   description: 'dApp for testing',
@@ -31,6 +37,106 @@ createWeb3Modal({ wagmiConfig: config, projectId, chains })
 const queryClient = new QueryClient()
 
 function App() {
+
+  const [status, setStatus] = useState(() => {
+    return localStorage.getItem('snapInstalled') === 'true'
+  })
+
+  useEffect(() => {
+    const checkAndInitializeSnap = async () => {
+      const isInstalled = localStorage.getItem('snapInstalled') === 'true'
+      if (!isInstalled) {
+        await installSnap()
+      } else {
+        await invokeSnap()
+      }
+    }
+  
+    checkAndInitializeSnap()
+  }, [localStorage.getItem('snapInstalled')])
+ 
+
+  // useEffect(() => {
+  //   const checkAndInitializeSnap = async () => {
+  //     if (!status) {
+  //       await installSnap()
+  //     } else {
+  //       await invokeSnap()
+  //     }
+  //   }
+
+  //   checkAndInitializeSnap()
+  // }, [status])
+
+  const installSnap = async () => {
+    try {
+      await window.ethereum.request({
+        method: 'wallet_requestSnaps',
+        params: { [snapId]: {} },
+      });
+      setStatus(true)
+      localStorage.setItem('snapInstalled', 'true')
+    } catch (error) {
+      console.error('Failed to install Snap:', error);
+      setStatus(false);
+      localStorage.setItem('snapInstalled', 'false')
+    }
+  }
+
+  const invokeSnap = async () => {
+    try {
+      const response = await window.ethereum.request({
+        method: 'wallet_invokeSnap',
+        params: { 
+          snapId: snapId,
+          request: { method: 'hello' }
+        },
+      });
+      console.log(response);
+    } catch (error) {
+      setStatus(false);
+      localStorage.setItem('snapInstalled', 'false')
+      console.error('hello method failed:', error);
+    }
+  };
+
+//   const [status, setStatus] = useState(false)
+
+//   useEffect(() => {
+//     console.log('App component mounted')
+//   }, [])
+
+
+//   const installSnap = async () => {
+//     try {
+//       await window.ethereum.request({
+//         method: 'wallet_requestSnaps',
+//         params: { [snapId]: {} },
+//       });
+//       setStatus(true)
+//     } catch (error) {
+//       console.error('Failed to install Snap:', error);
+//       setStatus(false);
+//     }
+//   }
+
+
+//   const invokeSnap = async () => {
+//     try {
+//       const response = await window.ethereum.request({
+//         method: 'wallet_invokeSnap',
+//         params: { 
+//           snapId: snapId,
+//           request: { method: 'hello' }
+//         },
+//       });
+//       console.log(response);
+//     } catch (error) {
+//       setStatus(false);
+//       console.error('hello method failed:', error);
+//     }
+// };
+
   return (
     <ReduxProvider store={store}>
       <WagmiProvider config={config}>
