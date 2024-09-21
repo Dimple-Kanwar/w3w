@@ -55,7 +55,8 @@ module.exports = {
       },
       linea: {
         accounts: [`${process.env.PRIVATE_KEY}`],
-        url: `${process.env.LINEA_RPC_URL}`
+        url: `${process.env.LINEA_RPC_URL}`,
+        chainId: 59141
       },
       flow: {
         accounts: [`${process.env.PRIVATE_KEY}`],

@@ -63,7 +63,7 @@ clone repository using following command:
     
 ### linea:
 
-    
+    0x77cbfeA07320f53110C3144e1e75Fd610A37F01a(https://sepolia.lineascan.build/address/0x77cbfeA07320f53110C3144e1e75Fd610A37F01a)
 
 ### gnosis:
 
