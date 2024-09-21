@@ -27,9 +27,13 @@ module.exports = {
         url: "http://127.0.0.1:8545/",
         accounts: ["0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80"]
       },
-      near: {
-        accounts: [`${process.env.NEAR_PRIVATE_KEY}`],
-        url: `${process.env.NEAR_RPC}`
+      testnet_aurora: {
+        url: `${process.env.NEAR_AURORA_TESTNET_RPC}`,
+        accounts: [`${process.env.PRIVATE_KEY}`]
+      },
+      develop_aurora: {
+        url: `${process.env.NEAR_AURORA_DEVELOP_RPC}`,
+        accounts: [`${process.env.PRIVATE_KEY}`]
       },
       hedera: {
         accounts: [`${process.env.HEDERA_ACCOUNT_PRIVATE_KEY}`],
@@ -39,6 +43,11 @@ module.exports = {
         chainId: 31,
         accounts: [`${process.env.PRIVATE_KEY}`],
         url: `${process.env.ROOTSTOCK_RPC_URL}`
+      },
+      morph_holesky_testnet: {
+        accounts: [`${process.env.PRIVATE_KEY}`],
+        url: `${process.env.MORPH_RPC_URL}`,
+        chainId: 2810
       },
       gnosis: {
         accounts: [`${process.env.PRIVATE_KEY}`],
@@ -51,7 +60,6 @@ module.exports = {
       flow: {
         accounts: [`${process.env.PRIVATE_KEY}`],
         url: `${process.env.FLOW_RPC_URL}`,
-        chainId: 545,
         gas: 500000
       }
 
