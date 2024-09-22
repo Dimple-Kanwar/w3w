@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import CheckForm from './CheckForm';
 import logo from '../assets/logo.jpg';
 import { SwapForm } from './SwapForm';
+import DonationForm from './Donate';
 
 export default function Box() {
     const [activeNav, setActiveNav] = useState('Check');
@@ -15,7 +16,7 @@ export default function Box() {
             case 'Swap':
                 return <SwapForm />;
             case 'Donate':
-                return <DonateForm />;
+                return <DonationForm/>;
             default:
                 return null;
         }
