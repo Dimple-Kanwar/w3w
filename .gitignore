@@ -31,3 +31,9 @@ artifacts
 cache
 
 *-notes*
+*.cache
+public
+yarn*
+.yarn
+.pnp*
+
