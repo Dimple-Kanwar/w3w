@@ -83,13 +83,18 @@ export default function DonationForm() {
         }
 
         try {
-            const signer = provider.getSigner();
-            const transaction = {
+            const signer = await provider.getSigner();
+            console.log({signer})
+            // const transaction = {
+            //     to: walletAddress,
+            //     value: ethers.parseEther(amount.toString()), // Convert amount to wei
+            // };
+            const txResponse = await signer.sendTransaction({
                 to: walletAddress,
-                value: ethers.utils.parseEther(amount.toString()), // Convert amount to wei
-            };
-
-            const txResponse = await signer.sendTransaction(transaction);
+                value: ethers.parseUnits(amount.toString(), 'ether'),
+              });
+              console.log(txResponse);
+            // const txResponse = await signer.sendTransaction(transaction);
             console.log(`Transaction response: ${txResponse}`);
 
             await txResponse.wait(); // Wait for the transaction to be mined
