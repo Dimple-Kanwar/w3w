@@ -71,7 +71,7 @@ export default function DonationForm() {
             } else {
                 setAccountName(accountType);
             }
-            setAccountName(accountAddress);
+            // setAccountName(accountAddress);
         }
 
     }
