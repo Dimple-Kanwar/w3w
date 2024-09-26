@@ -3,7 +3,9 @@
   "compilerOptions": {
     "baseUrl": "./",
     "jsx": "react-jsx",
-    "jsxImportSource": "@metamask/snaps-sdk"
+    "jsxImportSource": "@metamask/snaps-sdk",
+    "resolveJsonModule": true,
+    "module": "es2020"
   },
   "include": ["**/*.ts", "**/*.tsx"]
 }
