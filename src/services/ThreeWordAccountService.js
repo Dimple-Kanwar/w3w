@@ -2,13 +2,14 @@ import {ethers} from "ethers";
 import { generate } from "../utils/random-words";
 import abi from "../utils/contract-abi.json";
 import("dotenv/config");
+import networks from "../constants";
 // ABI of the ThreeWordAccount contract
 
 const ZERO_ADDRESS = "0x0000000000000000000000000000000000000000";
 const wordCount = 3;
 export default class ThreeWordAccountService {
 
-  constructor(networks) {
+  constructor() {
     this.networks = networks;
     this.contracts = new Map();
     this.signers = new Map();
@@ -55,6 +56,7 @@ export default class ThreeWordAccountService {
   }
 
   async getAccountNameByAddress(chainId, account) {
+    console.log({chainId, account})
     const contract = await this.getContract(chainId);
     const accountName = await contract.getAccountName(account);
     if (!accountName) {
@@ -64,6 +66,7 @@ export default class ThreeWordAccountService {
   }
 
   async getAccountAddressByName(chainId, accountName) {
+    console.log({chainId, accountName})
     const contract = await this.getContract(chainId);
     const accountAddress = await contract.getAddressByAccountName(accountName);
     console.log({ accountAddress })
@@ -74,35 +77,3 @@ export default class ThreeWordAccountService {
     return this.networks;
   }
 }
-
-// Example usage
-// async function main() {
-
-
-//   const threeWordAccount = new ThreeWordAccountService(networks);
-
-//   try {
-//     const user1Key = `${process.env.USER1_KEY}`;
-//     const user1Wallet = new ethers.Wallet(user1Key);
-
-//     const user2Key = `${process.env.USER2_KEY}`;
-//     const user2Wallet = new ethers.Wallet(user2Key);
-
-//     const user3Key = `${process.env.USER3_KEY}`;
-//     const user3Wallet = new ethers.Wallet(user3Key);
-
-//     // Complete Flow on Hardhat
-//     const mapAccountResponse = await threeWordAccount.mapAccount(networks[0].chainId, user2Wallet.address);
-//     console.log('Added quotation on Hardhat:', mapAccountResponse);
-
-//     const accountName = await threeWordAccount.getAccountNameByAddress(networks[0].chainId, user2Wallet.address);
-//     console.log('getAccountNameByAddress on Hardhat:', accountName);
-
-//     const words = generate(wordCount);
-//     const name = words.concat(".")[0];
-//     const accountAddress = await threeWordAccount.getAccountAddressByName(networks[0].chainId, name);
-//     console.log('getAccountAddressByName on Hardhat:', accountAddress);
-//   } catch (error) {
-//     console.error('Error:', error);
-//   }
-// }

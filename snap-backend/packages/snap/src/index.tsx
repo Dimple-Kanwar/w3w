@@ -3,10 +3,10 @@ import { Box, Text, Heading, Divider } from '@metamask/snaps-sdk/jsx';
 
 // Mock data for WNS lookup
 const mockData = {
-  '///fruit.apple.grape':'0xF64Aff53E004282334a451009ec01358d2FD866d',
-  '///alice.orange.banana': '0x742d35Cc6634C0532925a3b844Bc454e4438f44e',
-  '///bob.apple.cherry': '0x8ba1f109551bD432803012645Ac136ddd64DBA72',
-  '///charlie.grape.date': '0xAb5801a7D398351b8bE11C439e05C5B3259aeC9B',
+  '///fix.fight.moving':'0xF64Aff53E004282334a451009ec01358d2FD866d',
+  '///previous.lamp.hot': '0x742d35Cc6634C0532925a3b844Bc454e4438f44e',
+  '///needle.mysterious.food': '0x8ba1f109551bD432803012645Ac136ddd64DBA72',
+  '///wore.door.roar': '0xAb5801a7D398351b8bE11C439e05C5B3259aeC9B',
 };
 
 // Validation function
@@ -35,7 +35,7 @@ export const onRpcRequest: OnRpcRequestHandler = async ({ origin, request }) => 
               <Heading>WNS</Heading>
             </Box>
           ),
-          placeholder: '///apple.orange.banana',
+          placeholder: '///fix.fight.moving',
         },
       });
 

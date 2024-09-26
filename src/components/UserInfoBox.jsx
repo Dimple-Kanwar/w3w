@@ -11,7 +11,7 @@ const UserInfoBox = () => {
   useEffect(() => {
     // Fetch associated name here
     // For now, let's use a placeholder
-    setAssociatedName('///fruit.apple.grape');
+    setAssociatedName('///fix.fight.moving');
   }, [address]);
 
   const handleCopy = () => {

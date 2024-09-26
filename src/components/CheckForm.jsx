@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useAccount, useChainId } from 'wagmi';
 import ThreeWordAccountService from "../services/ThreeWordAccountService";
-import networks from "../constants";
 import { ethers } from 'ethers';
 import { checkAddressType } from '../utils/checkAddress';
-const threeWordAccountService = new ThreeWordAccountService(networks);
+const threeWordAccountService = new ThreeWordAccountService();
 let provider;
 
 const statusColors = {
@@ -12,7 +11,7 @@ const statusColors = {
     contract: 'bg-yellow-500',
     scam: 'bg-red-500',
     notFound: 'bg-gray-500',
-    invalidAddress: 'bg-gray-500'
+    "Invalid Address!": 'bg-gray-500'
 };
 
 // CheckForm Component
